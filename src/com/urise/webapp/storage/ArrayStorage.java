@@ -1,3 +1,7 @@
+package com.urise.webapp.storage;
+
+import com.urise.webapp.model.Resume;
+
 import java.util.Arrays;
 
 /**
@@ -6,7 +10,6 @@ import java.util.Arrays;
 public class ArrayStorage {
     private Resume[] storage = new Resume[10000];
     private int sizeResume;
-
     public void clear() {
         for (int i = 0; i < sizeResume; i++) {
             storage[i] = null;
@@ -15,7 +18,7 @@ public class ArrayStorage {
     }
 
     public void save(Resume r) {
-        int index = getIndexByUUID(r.uuid);
+        int index = getIndexByUUID(r.getUuid());
         if (index > -1) {
             storage[index] = r;
         } else {
@@ -50,7 +53,7 @@ public class ArrayStorage {
 
     private int getIndexByUUID(String uuid) {
         for (int i = 0; i < sizeResume; i++) {
-            if (storage[i].uuid.equals(uuid)) {
+            if (storage[i].getUuid().equals(uuid)) {
                 return i;
             }
         }
