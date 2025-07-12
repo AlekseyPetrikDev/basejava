@@ -8,8 +8,10 @@ import java.util.Arrays;
  * Array based storage for Resumes
  */
 public class ArrayStorage {
-    private Resume[] storage = new Resume[10000];
+    private static final int SIZE_STORAGE = 10000;
+    private Resume[] storage = new Resume[SIZE_STORAGE];
     private int sizeResume;
+
     public void clear() {
         for (int i = 0; i < sizeResume; i++) {
             storage[i] = null;
@@ -18,26 +20,44 @@ public class ArrayStorage {
     }
 
     public void save(Resume r) {
-        int index = getIndexByUUID(r.getUuid());
-        if (index > -1) {
-            storage[index] = r;
+        if (sizeResume < SIZE_STORAGE) {
+            int i = getIndexByUUID(r.getUuid());
+            if (i > -1) {
+                System.out.println("Error: resume exists");
+            } else {
+                storage[sizeResume] = r;
+                sizeResume++;
+            }
         } else {
-            storage[sizeResume] = r;
-            sizeResume++;
+            System.out.println("stack over flow");
+        }
+    }
+
+    public void update(Resume r) {
+        int i = getIndexByUUID(r.getUuid());
+        if (i < 0) {
+            System.out.println("Error: resume not found");
+        } else {
+            storage[i] = r;
         }
     }
 
     public Resume get(String uuid) {
-        int index = getIndexByUUID(uuid);
-        return index > -1 ? storage[index] : null;
+        int i = getIndexByUUID(uuid);
+        if (i < 0) {
+            System.out.println("Error: resume not found");
+        }
+        return i < 0 ? null : storage[i];
     }
 
     public void delete(String uuid) {
-        int index = getIndexByUUID(uuid);
-        if (index > -1) {
-            storage[index] = storage[sizeResume - 1];
+        int i = getIndexByUUID(uuid);
+        if (i < 0) {
+            System.out.println("Error: resume not found");
+        } else {
+            storage[i] = storage[sizeResume - 1];
+            storage[sizeResume - 1] = null;
             sizeResume--;
-        }
     }
 
     /**
@@ -59,5 +79,4 @@ public class ArrayStorage {
         }
         return -1;
     }
-
 }
