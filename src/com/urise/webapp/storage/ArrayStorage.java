@@ -58,7 +58,6 @@ public class ArrayStorage {
             storage[i] = storage[sizeResume - 1];
             storage[sizeResume - 1] = null;
             sizeResume--;
-        }
     }
 
     /**
