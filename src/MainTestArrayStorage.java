@@ -1,4 +1,5 @@
 import com.urise.webapp.model.Resume;
+import com.urise.webapp.storage.ArrayStorage;
 import com.urise.webapp.storage.SortedArrayStorage;
 import com.urise.webapp.storage.Storage;
 
@@ -33,6 +34,8 @@ public class MainTestArrayStorage {
         ARRAY_STORAGE.delete(r1.getUuid());
         printAll();
         ARRAY_STORAGE.update(r4);
+        printAll();
+        ARRAY_STORAGE.delete(r4.getUuid());
         printAll();
         ARRAY_STORAGE.clear();
         printAll();
