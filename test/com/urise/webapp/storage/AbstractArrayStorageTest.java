@@ -48,9 +48,7 @@ class AbstractArrayStorageTest {
 
     @Test
     protected void saveExist() {
-        ExistStorageException exception = Assertions.assertThrows(ExistStorageException.class, () -> {
-            storage.save(new Resume(UUID_1));
-        });
+        ExistStorageException exception = Assertions.assertThrows(ExistStorageException.class, () -> storage.save(new Resume(UUID_1)));
         Assertions.assertEquals(String.format("Error: resume UUID = %s already exists", UUID_1), exception.getMessage());
     }
 
@@ -65,9 +63,7 @@ class AbstractArrayStorageTest {
             Assertions.fail();
         }
 
-        StorageException exception = Assertions.assertThrows(StorageException.class, () -> {
-            storage.save(new Resume());
-        });
+        StorageException exception = Assertions.assertThrows(StorageException.class, () -> storage.save(new Resume()));
         Assertions.assertEquals("Error: stack over flow", exception.getMessage());
     }
 
@@ -79,9 +75,7 @@ class AbstractArrayStorageTest {
 
     @Test
     protected void deleteNotExist() {
-        NotExistStorageException exception = Assertions.assertThrows(NotExistStorageException.class, () -> {
-            storage.delete("dummy");
-        });
+        NotExistStorageException exception = Assertions.assertThrows(NotExistStorageException.class, () -> storage.delete("dummy"));
         Assertions.assertEquals(String.format("Error: resume UUID = %s not found", "dummy"), exception.getMessage());
     }
 
@@ -95,9 +89,7 @@ class AbstractArrayStorageTest {
     @Test
     protected void updateNotExist() {
         Resume r = new Resume(UUID_4);
-        NotExistStorageException exception = Assertions.assertThrows(NotExistStorageException.class, () -> {
-            storage.update(r);
-        });
+        NotExistStorageException exception = Assertions.assertThrows(NotExistStorageException.class, () -> storage.update(r));
         Assertions.assertEquals(String.format("Error: resume UUID = %s not found", UUID_4), exception.getMessage());
     }
 
@@ -113,9 +105,7 @@ class AbstractArrayStorageTest {
 
     @Test
     protected void getNotExist() {
-        NotExistStorageException exception = Assertions.assertThrows(NotExistStorageException.class, () -> {
-            storage.get("dummy");
-        });
+        NotExistStorageException exception = Assertions.assertThrows(NotExistStorageException.class, () -> storage.get("dummy"));
         Assertions.assertEquals(String.format("Error: resume UUID = %s not found", "dummy"), exception.getMessage());
     }
 }
