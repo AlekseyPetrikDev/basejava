@@ -4,6 +4,7 @@ public class StorageException extends RuntimeException {
     private final String uuid;
 
     public StorageException(String uuid) {
+        super("Error: stack over flow");
         this.uuid = uuid;
     }
 

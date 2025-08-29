@@ -17,13 +17,13 @@ public abstract class AbstractArrayStorage implements Storage {
     }
 
     public void clear() {
-        Arrays.fill(storage, 0, sizeResume - 1, null);
+        Arrays.fill(storage, 0, sizeResume, null);
         sizeResume = 0;
     }
 
     public void save(Resume r) {
         if (sizeResume == SIZE_STORAGE) {
-            throw new StorageException("stack over flow", r.getUuid());
+            throw new StorageException(r.getUuid());
         }
         int ind = getIndexByUUID(r.getUuid());
         if (ind > -1) {
