@@ -9,7 +9,7 @@ public class ArrayStorage extends AbstractArrayStorage {
 
     @Override
     protected void insertResume(int ind, Resume r) {
-        storage[-ind - 1] = r;
+        storage[sizeResume] = r;
     }
 
     @Override
@@ -29,6 +29,6 @@ public class ArrayStorage extends AbstractArrayStorage {
                 return i;
             }
         }
-        return sizeResume == 0 ? -1 : -(sizeResume + 1);
+        return -1;
     }
 }
